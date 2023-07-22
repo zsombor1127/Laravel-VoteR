@@ -1,0 +1,38 @@
+/* Alert box */
+
+div.alert-box {
+    display: flex;
+    margin: auto;
+    margin-bottom: 2rem;
+    height: 4rem;
+    border-radius: 0.5rem;
+    background-color: #5da8ee;
+    justify-content: space-between;
+}
+
+div.alert-box,
+label.alert-message {
+    font-weight: bolder;
+    text-align: left;
+    margin: 0 0 1.5rem;
+    color: #fff;
+}
+
+label.alert-message {
+    padding: 1rem 1rem;
+}
+
+div.alert-close {
+    cursor: pointer;
+    background-color: #5da8ee;
+    box-shadow: none;
+    margin: 0.5rem 1rem;
+
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+div.alert-close:hover {
+    color: #ebebeb;
+}
