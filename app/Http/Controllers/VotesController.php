@@ -14,14 +14,13 @@ class VotesController extends Controller
         $this->dayOfYear = now()->format('z');
     }
 
-    public function store(Request $request, int $questionId, string $vote)
+    public function store(Request $request)
     {
         $request->merge([
             'questionId' => $request->route('questionId'),
             'vote' => $request->route('vote')
         ]);
 
-        // TODO: Magyar hibaüzenetek
         $request->validate([
             'vote' => 'required|string|min:1|max:32', 
             'questionId' => 'required|numeric'
@@ -30,11 +29,11 @@ class VotesController extends Controller
         $questionData = Question::getQuestionOfTheDay($this->dayOfYear);
 
         if($questionData->id != $request->questionId) {
-            return back()->withErrors(['invalid_vote' => 'Érvénytelen szavazat!']);
+            return back()->withErrors(['invalid_vote' => 'Vote invalid!']);
         }
 
         Vote::newVote($request->questionId, $request->vote);
-        return back()->withErrors(['vote_success' => 'Sikeres szavazás!']);
+        return back()->withErrors(['vote_success' => 'Success!']);
 
     }
 
@@ -48,20 +47,18 @@ class VotesController extends Controller
 
         // Validate the request parameters
         $request->validate([
-            'vote' => 'required|numeric'],
-            ['vote.required' => 'Nem szavaztál semmire!',
-            'vote.numeric' => 'Érvénytelen szavazat!']
-        );
+            'vote' => 'required|numeric'
+        ]);
 
         // Check data validity
         $questionData = Question::getQuestionOfTheDay($this->dayOfYear);
 
         if($questionData->id !== $questionId || !$questionData->votes->contains('id', $request->vote)) {
-            return back()->withErrors(['invalid_vote' => 'Érvénytelen szavazat!']);
+            return back()->withErrors(['invalid_vote' => 'Vote invalid!!']);
         }
 
         Vote::saveVote($request->vote);
 
-        return back()->withErrors(['vote_success' => 'Sikeres szavazás!']);
+        return back()->withErrors(['vote_success' => 'Success!']);
     }
 }

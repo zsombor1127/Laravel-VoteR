@@ -3,7 +3,7 @@
 @section('content')
     
 <div>
-    <h2>#{{ $dayOfYear }} {{ $question->question ?? 'Ma még nem érkezett kérdés' }}</h2>
+    <h2>#{{ $dayOfYear }} {{ $question->question ?? 'No questions today' }}</h2>
 
     @if ($question)
         <form method="POST" action="{{ route('vote', $question->id) }}">
@@ -19,11 +19,11 @@
                 @endforeach
 
                 <li>
-                    <input type="text" name="new_vote" placeholder="Saját válasz hozzáadása">
+                    <input type="text" name="new_vote" placeholder="New answer">
                 </li>
             </ul>
 
-            <input type="submit" value="Szavazok">
+            <input type="submit" value="Vote">
         </form>
     @endif
 </div>
