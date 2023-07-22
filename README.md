@@ -1,6 +1,6 @@
 
 # VoteR
-VoteR is a web-based platform that allows users to create and participate in daily polls. Each day, users can create a new question, and other users can cast their votes by selecting from the existing options or adding new ones.
+VoteR is a web-based app that allows users to create and participate in daily polls. Each day, users can create a new question, and other users can cast their votes by selecting from the existing options or adding new ones.
 
 ## Template Source
 
